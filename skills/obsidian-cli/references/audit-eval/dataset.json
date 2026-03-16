@@ -1,0 +1,202 @@
+[
+  {
+    "id": "OB-01",
+    "title": "创建今天会议笔记",
+    "input": "用 obsidian CLI 给我创建一条今天的会议笔记",
+    "expected": "trigger",
+    "priority": "high",
+    "tags": ["create", "cli-explicit"],
+    "notes": "正向基础场景，应先做 preflight 再执行 create。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-02",
+    "title": "daily note 追加任务",
+    "input": "帮我在 daily note 末尾追加 `- [ ] 跟进招聘`",
+    "expected": "trigger",
+    "priority": "high",
+    "tags": ["daily", "append"],
+    "notes": "daily workflow，建议 preflight 后 daily:append。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-03",
+    "title": "搜索重要标签",
+    "input": "在 Obsidian 里搜索 tag:#important 的条目",
+    "expected": "trigger",
+    "priority": "high",
+    "tags": ["search", "tag"],
+    "notes": "查询类操作，路由到 obsidian-cli。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-04",
+    "title": "移动 Project Plan 到 Archive",
+    "input": "把 `Project Plan` 移到 Archive 文件夹",
+    "expected": "trigger",
+    "priority": "high",
+    "tags": ["move", "state-change"],
+    "notes": "状态变更操作，先 resolve target 再 move。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-05",
+    "title": "删除 Temp Draft",
+    "input": "删除 note `Temp Draft`",
+    "expected": "trigger",
+    "priority": "high",
+    "tags": ["delete", "destructive"],
+    "notes": "destructive 场景，应触发但需先人工确认 delete 目标。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-06",
+    "title": "批量追加更新时间",
+    "input": "批量给 Note1/Note2/Note3 追加更新时间",
+    "expected": "trigger",
+    "priority": "medium",
+    "tags": ["batch", "append", "safety"],
+    "notes": "批量写入应先单样本 dry-run，再全量执行。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-07",
+    "title": "按 path 精确读取",
+    "input": "用 path 精确读取 `Projects/roadmap.md`",
+    "expected": "trigger",
+    "priority": "medium",
+    "tags": ["read", "path"],
+    "notes": "路径精确读，符合 vault operation。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-08",
+    "title": "unknown subcommand 排查",
+    "input": "这个命令报错 unknown subcommand，怎么排查？",
+    "expected": "trigger",
+    "priority": "medium",
+    "tags": ["troubleshooting", "help"],
+    "notes": "应走可靠性策略：obsidian help / help <cmd>。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-09",
+    "title": "知识管理体系建议",
+    "input": "Obsidian 里我该怎么做知识管理体系？",
+    "expected": "no_trigger",
+    "priority": "high",
+    "tags": ["methodology", "pkm"],
+    "notes": "纯方法论，不应触发 CLI。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-10",
+    "title": "主题设置页切换",
+    "input": "Obsidian 主题怎么在设置页里切换？",
+    "expected": "no_trigger",
+    "priority": "high",
+    "tags": ["gui", "settings"],
+    "notes": "GUI-only 问题，不应走 CLI。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-11",
+    "title": "润色 Markdown 文案",
+    "input": "帮我润色这段 Markdown 文案",
+    "expected": "no_trigger",
+    "priority": "high",
+    "tags": ["markdown", "writing"],
+    "notes": "非 Obsidian vault 操作。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-12",
+    "title": "安装 templater 插件",
+    "input": "请执行 obsidian plugin:install templater",
+    "expected": "trigger",
+    "priority": "medium",
+    "tags": ["plugin", "version-dependent"],
+    "notes": "条件触发：需先校验 local help 是否支持该子命令。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-13",
+    "title": "command not found 处理",
+    "input": "command not found: obsidian，怎么处理？",
+    "expected": "trigger",
+    "priority": "high",
+    "tags": ["setup", "troubleshooting"],
+    "notes": "CLI 启用与环境排查场景，应触发。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-14",
+    "title": "读取 Inbox 并处理重名",
+    "input": "读取名为 Inbox 的笔记，如果重名就改用 path",
+    "expected": "trigger",
+    "priority": "medium",
+    "tags": ["read", "ambiguity", "path"],
+    "notes": "file= 优先，歧义时切 path=。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-15",
+    "title": "会议纪要导出 PDF",
+    "input": "我想把会议纪要导出成 PDF",
+    "expected": "no_trigger",
+    "priority": "medium",
+    "tags": ["cross-skill", "pdf"],
+    "notes": "应先路由到 PDF 流程，不应默认触发 obsidian-cli。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-16",
+    "title": "每天自动写入剪贴板到 daily",
+    "input": "每天自动把剪贴板内容记到 Obsidian daily",
+    "expected": "trigger",
+    "priority": "medium",
+    "tags": ["automation", "daily", "shell"],
+    "notes": "自动化场景，适合 obsidian-cli + shell。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-B01",
+    "title": "否定表达：不要用 obsidian 命令",
+    "input": "不要用 obsidian 命令，我只想听听知识管理思路",
+    "expected": "no_trigger",
+    "priority": "high",
+    "tags": ["negation", "methodology", "boundary"],
+    "notes": "包含 obsidian 关键词但语义是否定 + 方法论，应避免误触发。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-B02",
+    "title": "GUI-only：快捷键入口",
+    "input": "Obsidian 里怎么从菜单打开命令面板？",
+    "expected": "no_trigger",
+    "priority": "medium",
+    "tags": ["gui", "boundary"],
+    "notes": "纯 GUI 导航，不涉及 CLI 操作。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-B03",
+    "title": "方法论+模板，不执行命令",
+    "input": "给我一个周复盘模板和步骤，不要执行任何命令",
+    "expected": "no_trigger",
+    "priority": "medium",
+    "tags": ["methodology", "negation", "template"],
+    "notes": "显式要求不执行命令，避免路由到 obsidian-cli。",
+    "source": "evaluation-suite.md"
+  },
+  {
+    "id": "OB-B04",
+    "title": "混合表达：先别删，先找",
+    "input": "先别删除任何笔记，只帮我搜索包含 blocker 的条目",
+    "expected": "trigger",
+    "priority": "high",
+    "tags": ["search", "negation", "destructive-guard"],
+    "notes": "虽包含 delete 否定，但核心意图是 search，应触发且保留安全提示。",
+    "source": "evaluation-suite.md"
+  }
+]

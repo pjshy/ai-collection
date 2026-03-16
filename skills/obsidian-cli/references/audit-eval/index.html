@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Obsidian CLI Audit Evaluation</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>Obsidian CLI Audit Evaluation</h1>
+        <p class="sub">Manually review routing decisions (trigger / no_trigger) and analyze misclassifications.</p>
+      </header>
+
+      <section class="metrics" id="metrics"></section>
+
+      <section class="filters">
+        <div class="row">
+          <label>
+            Expected
+            <select id="expectedFilter">
+              <option value="all">All</option>
+              <option value="trigger">expected=trigger</option>
+              <option value="no_trigger">expected=no_trigger</option>
+            </select>
+          </label>
+
+          <label>
+            <input id="failedOnly" type="checkbox" />
+            failed-only
+          </label>
+
+          <label class="search-wrap">
+            Keyword
+            <input id="keyword" type="text" placeholder="Match id / title / input" />
+          </label>
+        </div>
+
+        <div class="row tags-row">
+          <span>Tags</span>
+          <div id="tagFilters" class="tag-filters"></div>
+        </div>
+      </section>
+
+      <section class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Scenario Title</th>
+              <th>User Input</th>
+              <th>Expected</th>
+              <th>Predicted</th>
+              <th>Pass/Fail</th>
+              <th>Priority</th>
+              <th>Tags</th>
+              <th>Review Status</th>
+            </tr>
+          </thead>
+          <tbody id="casesBody"></tbody>
+        </table>
+      </section>
+
+      <section class="detail" id="detailPanel">
+        <h2>Details</h2>
+        <p class="muted">Click any row to view full input and mismatch analysis.</p>
+      </section>
+    </main>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
